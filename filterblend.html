@@ -1,0 +1,295 @@
+<!doctype>
+<html>
+    <head>
+        <title>filter blend</title>
+        <meta charset="utf-8">
+        <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        html {
+            overflow-y: scroll;
+            height: 100%;
+        }
+        body {
+            height: 100%;
+        }
+        .screen {
+            height: 100%;
+            position: relative;
+        }
+        .text {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 300px;
+            background: #fff;
+            font-size: 14px !important;;
+        }
+        .screen > img {
+            height: 500px;
+        }
+        .box-shadow {
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
+        }
+        .drop-shadow {
+            filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, .5));
+        }
+        .border {
+            height: 100px;
+            width: 100px;
+            margin: 100px;
+            border: 10px dashed #f00;
+            display: inline-block;
+        }
+        .gradient {
+            height: 200px;
+            width: 500px;
+            margin-left: 100px;
+            background: repeating-linear-gradient(135deg, blue, blue 10%, transparent 0, transparent 20%, red 0, red 30%);
+            filter: drop-shadow(0 0 10px black);
+        }
+        .gradient-right {
+            filter: drop-shadow(500px 10px 0 yellow);
+        }
+        .png-color {
+            width: 400px;
+            height: 400px;
+            margin-bottom: 50px;
+        }
+        .png-color img {
+            max-width: 100%;
+            max-height: 100%;
+            filter: drop-shadow(#f00 400px 0);
+            display: block;
+        }
+        .png-color img:nth-child(2) {
+            filter: drop-shadow(#00f 400px 0);
+        }
+        .png-color img:nth-child(3) {
+            filter: drop-shadow(400px 0  2px #000);
+        }
+        .hue-rotate {
+            filter: hue-rotate(180deg);
+        }
+        .opacity {
+            width: 409px;
+            height: 348px;
+            background-image: url(zhangzhe.png);
+            overflow: hidden;
+        }
+        .opacity p,
+        .filter-opacity p {
+            text-align: center;
+            font-size: 20px;
+            color: yellow;
+            margin-top: 220px;
+        }
+        .filter-opacity {
+            filter: opacity(10%);
+        }
+        .threed {
+            perspective: 500px;
+            width: 800px;
+            height: 800px;
+            transform-style: preserve-3d;
+            margin: auto;
+            position: relative;
+        }
+        .threed img {
+            max-height: 100%;
+            max-width: 100%;
+            display: block;
+        }
+        .img {
+            position: absolute;
+            transform: rotateX(10deg);
+            transform-origin: 0 88%;
+        }
+        .shadow-container {
+            position: absolute;
+            height: 259px;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: rotateX(90deg);
+            transform-origin: 0 88%;
+        }
+        .shadow {
+            position: relative;
+            top: -259px;
+            left: -5px;
+            overflow: hidden;
+            filter: drop-shadow(0 259px #000);
+            border: 5px solid transparent;
+        }
+        .blend {
+            height: 180px;
+            width: 240px;
+            position: relative;
+            background: hsl(335, 100%, 50%);
+            display: inline-block;
+        }
+        .blend img {
+            position: absolute;
+            mix-blend-mode: luminosity;
+        }
+        .blendd {
+            height: 180px;
+            width: 240px;
+            background-image: url(bridge.jpg);
+            display: inline-block;
+        }
+        .blendd div {
+
+            height: 100%;
+            width: 100%;
+            background: hsl(335, 100%, 50%);
+            mix-blend-mode: luminosity;
+        }
+        .blend2 {
+            display: inline-block;
+            height: 180px;
+            width: 240px;
+            position: relative;
+            background: url(bridge.jpg) hsl(335, 100%, 50%);
+            background-blend-mode: luminosity;
+        }
+        .saiting {
+            width: 700px;
+            height: 565px;
+            margin: 50px auto;
+            background: url(saiting.png), linear-gradient(165deg, #005, #003, #00F);
+            background-blend-mode: lighten;
+            text-align: center;
+            line-height: 700px;
+            vertical-align: middle;
+        }
+        .saiting p {
+            font-size: 100px;
+            font-weight: 900;
+            color: darkcyan;
+            font-family: 黑体;
+            mix-blend-mode: difference;
+            text-shadow: 0 0 20px darkcyan;
+        }
+        .multi-blend {
+            font-size: 200px;
+            font-weight: 900;
+            background: repeating-linear-gradient(0deg, red, red 5%, green 0, green 10%, blue 0, blue 15%),
+                repeating-linear-gradient(20deg, yellow, yellow 10%, transparent 0, transparent 20%, pink 0, pink 30%),
+                repeating-linear-gradient(40deg, red, red 5%, green 0, green 10%, blue 0, blue 15%),
+                repeating-linear-gradient(60deg, red, red 5%, green 0, green 10%, blue 0, blue 15%),
+                repeating-linear-gradient(80deg, red, red 5%, green 0, green 10%, blue 0, blue 15%);
+            background-blend-mode: lighten, exclusion, soft-light;
+            text-align: center;
+            overflow: hidden;
+        }
+        .blend-text {
+            margin-top: 100px;
+            color: yellow;
+            mix-blend-mode: difference;
+        }
+        .f {
+            color: azure !important;
+        }
+        .indent {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+        }
+        pre {
+            position: absolute;
+            right: 50%;
+            bottom: 30%;
+        }
+        </style>
+    </head>
+    <body>
+    <div class="screen multi-blend">
+        <p class="blend-text f">FILTER<br>BLEND</p>
+    </div>
+    <div class="screen">
+        <img src="intro-service1.png" class="indent">
+        <p class="text">需求：给背景透明的png图片加阴影</p>
+    </div>
+    <div class="screen">
+        <img src="intro-service1.png" class="box-shadow indent">
+        <p class="text">使用box-shadow<br><code>box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);</code></p>
+    </div>
+    <div class="screen">
+        <img src="intro-service1.png" class="drop-shadow indent">
+        <p class="text">使用filter: drop-shadow()<br><code>filter: drop-shadow(2px 2px 10px rgba(0, 0, 0, .5));</code><br>drop-shadow( &lt;length&gt;{2,3} &lt;color&gt;? )<br>&lt;offset-x&gt;&lt;offset-y&gt;(required)<br>&lt;blur-radius&gt;(optional)<br>&lt;spread-radius&gt;(optional, webkit不支持这一参数)<br>&lt;color&gt;(optional)</p>
+    </div>
+    <div class="screen">
+        <div class="border box-shadow"></div><div class="border drop-shadow"></div>
+        <div class="gradient"></div>
+        <p class="text">配合虚线边框使用<br>配合gradient渐变使用<br><code>background: repeating-linear-gradient(135deg, blue, blue 10%, transparent 0, transparent 20%, red 0, red 30%);<br>filter: drop-shadow(0 0 10px black);</code><br>阴影可以打入渐变的transparent的部分<br>drop-shadow()不支持inset，不支持叠加，但是可以给内部本身就有阴影的元素再加一层阴影<br>
+        drop-shadow()在部分浏览器上可以开启硬件加速功能，类似transform 3d的效果</p>
+    </div>
+    <div class="screen">
+        <div class="png-color indent">
+            <img src="intro-service1.png">
+            <img src="404.png">
+            <img src="403.png">
+        </div>
+        <p class="text">将背景透明的png图片改为单色，适合用于以细线条为主、透明部分比较多的png图片<br><code>filter: drop-shadow(#f00 400px 0);</code><br>设置足够大的位置偏移，使阴影不与原图像重叠</p>
+    </div>
+    <div class="screen" id="threed">
+        <div class="threed" id="threedContainer">
+            <img src="404.png" class="img">
+            <div class="shadow-container">
+                <img src="404.png" class="shadow">
+            </div>
+        </div>
+        <p class="text">用drop-shadow制作倒影并配合transform、perspective实现3d效果<br>主体与倒影的rotateX设置不同的值，用两个dom<br>倒影部分里，将原png偏移出dom元素，用overflow:hidden隐藏，只显示shadow部分<br>注意：chrome里，如果主体被完全隐藏了，shadow就显示不出来，需要给主体元素加上一个透明的border使它还有一部分没有被隐藏才能显示出来，firefox里则没有这个问题<br>
+        <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">点击查看filter的其他效果</a></p>
+        <pre>
+        .shadow {
+            position: relative;
+            top: -259px;
+            left: -5px;
+            overflow: hidden;
+            filter: drop-shadow(0 259px #000);
+            border: 5px solid transparent;
+        }
+        </pre>
+    </div>
+    <div class="screen">
+        <div class="indent">
+            <div class="blend"><img src="bridge.jpg"></div>
+            <div class="blendd"><div></div></div>
+            <div class="blend2"></div>
+        </div>
+        <p class="text">mix-blend-mode background-blend-mode<br>
+        mix-blend-mode：和直接父元素或背景的混合方式，需要多个dom实现<br>
+        background-blend-mode: 和其他的背景图片或背景颜色的混合方式，只需给一个dom设置多个background-image、background-color<br>
+        luminosity: 保留上层元素的HSL亮度信息，并从下层吸取色相和饱和度信息<br>
+        图1和图2都是mix-blend-mode: luminosity; 但是图片和色块的层叠顺序不一样，导致不一样的结果<br>
+        图3是background-blend-mode: luminosity;<br>
+        <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/blend-mode">点击查看其他的blend-mode</a></p>
+    </div>
+    <div class="screen">
+        <div class="saiting indent">
+            <p>这是一颗赛艇</p>
+        </div>
+        <p class="text">背景图片使用background-blend-mode改变色调，中间的文字加上text-shadow使用mix-blend-mode与背景融合</p>
+    </div>
+    <div class="screen multi-blend"><p class="blend-text">BAIDU</p>
+        <p class="text">设置多个repeating-linear-gradient，background-blend-mode的值也可以设置多个</p>
+        <pre>background: repeating-linear-gradient(0deg, red, red 5%, green 0, green 10%, blue 0, blue 15%),
+                repeating-linear-gradient(20deg, yellow, yellow 10%, transparent 0, transparent 20%, pink 0, pink 30%),
+                repeating-linear-gradient(40deg, red, red 5%, green 0, green 10%, blue 0, blue 15%),
+                repeating-linear-gradient(60deg, red, red 5%, green 0, green 10%, blue 0, blue 15%),
+                repeating-linear-gradient(80deg, red, red 5%, green 0, green 10%, blue 0, blue 15%);
+            background-blend-mode: lighten, exclusion, soft-light;</pre>
+    </div>
+    <script>
+    let threedContainer = document.getElementById('threedContainer');
+    let w = window.innerWidth;
+    document.getElementById('threed').addEventListener('mousemove', event => {
+        threedContainer.style.perspectiveOrigin = `${event.clientX / w * 100}% 0`;
+    }, false);
+    </script>
+    </body>
+</html>
